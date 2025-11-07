@@ -10,7 +10,7 @@ import Foundation
 public enum Scholarship: Equatable, CustomStringConvertible {
     case full     // Học bổng toàn phần
     case partial  // Học bổng bán phần
-    case praise   // Giấy khen / khen thưởng
+    case praise   // khen thưởng
     case none     // Không có học bổng
 
     public var description: String {
@@ -23,7 +23,6 @@ public enum Scholarship: Equatable, CustomStringConvertible {
     }
 }
 
-/// Luật gốc (đúng) — suy ra từ đặc tả trong tài liệu & ví dụ test:
 /// - Full:    GPA ≥ 8.0 && credits ≥ 15 && income < 5.0
 /// - Partial: GPA ≥ 7.0 && credits ≥ 12 && income < 8.0
 /// - Praise:  GPA ≥ 6.0 && credits ≥ 10
@@ -33,7 +32,7 @@ public enum Scholarship: Equatable, CustomStringConvertible {
 public struct ScholarshipRules {
     public init() {}
 
-    public func decide(gpa: Double, income: Double, credits: Int) -> Scholarship {
+    public func decide(gpa: Double, income: Double, credits: Double) -> Scholarship {
         // Full first (ưu tiên cao nhất)
         if gpa >= 8.0 && credits >= 15 && income < 5.0 {
             return .full
@@ -45,7 +44,7 @@ public struct ScholarshipRules {
         }
 
         // Praise
-        if gpa >= 6.0 && credits >= 10 {
+        if gpa >= 5.0 && credits >= 10 {
             return .praise
         }
 
