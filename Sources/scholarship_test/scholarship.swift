@@ -44,7 +44,7 @@ public struct ScholarshipRules {
         }
 
         // Praise
-        if gpa >= 5.0 && credits >= 10 {
+        if gpa < 5.0 && credits < 10 {
             return .praise
         }
 
